@@ -66,11 +66,11 @@ public class UserDAO {
 					"</td>" +
 				"</tr>";
 			}
-			System.out.println(users);
 			rs.close();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return users;
 	}
+	
 }

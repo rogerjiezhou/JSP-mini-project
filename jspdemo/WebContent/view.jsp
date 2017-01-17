@@ -24,9 +24,11 @@
 
 <tr>
 	<td>
-		<img src="images/add.png" />
+		<img src="images/add.png" onclick="addUser()"/>
 	</td>
 </tr>
 </table>
+<script data-require="jquery@*" data-semver="3.1.1" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script src="script/viewScript.js"></script>
 </body>
 </html>
