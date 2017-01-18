@@ -8,14 +8,12 @@
 </head>
 <body>
 
-<jsp:useBean id="user" class="com.demo.model.UserBean" />
-
-<jsp:setProperty name="user" property="*" />
-
 <jsp:useBean id="obj" class="com.demo.dao.UserDAO" />
 
 <% 
-	obj.insertUser(user);
+	String username = request.getParameter("username");
+	String pwd = request.getParameter("password");
+	int x = obj.addUser(username, pwd);
 	response.sendRedirect("view.jsp");
 %>
 

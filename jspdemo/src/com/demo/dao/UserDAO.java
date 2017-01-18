@@ -34,7 +34,7 @@ public class UserDAO {
 		return x;
 	}
 	
-	public int insertUser(UserBean user) {
+	public int registerUser(UserBean user) {
 		int x = 0;
 		try{
 			PreparedStatement ps = con.prepareStatement("insert into user(uname, pword) values(?, ?)");
@@ -86,6 +86,20 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public int addUser(String username, String pwd) {
+		int x = 0;
+		try{
+			PreparedStatement ps = con.prepareStatement("insert into user(uname, pword) values(?, ?)");
+			ps.setString(1, username);
+			ps.setString(2, pwd);
+			x = ps.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return x;
 	}
 	
 }

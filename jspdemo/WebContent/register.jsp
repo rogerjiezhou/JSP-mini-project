@@ -20,7 +20,7 @@
 <jsp:useBean id="obj" class="com.demo.dao.UserDAO" />
 	<%
 	
-		int x = obj.insertUser(user);
+		int x = obj.registerUser(user);
 		response.sendRedirect("view.jsp");
 		
 	%>
