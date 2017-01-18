@@ -24,7 +24,7 @@ public class UserDAO {
 	public int deleteUser(String id) {
 		int x = 0;
 		try{
-			PreparedStatement ps = con.prepareStatement("delete from user where uname = ?");
+			PreparedStatement ps = con.prepareStatement("delete from user where userid = ?");
 			ps.setString(1, id);
 			x = ps.executeUpdate();
 		
@@ -37,7 +37,7 @@ public class UserDAO {
 	public int insertUser(UserBean user) {
 		int x = 0;
 		try{
-			PreparedStatement ps = con.prepareStatement("insert into user values(?, ?)");
+			PreparedStatement ps = con.prepareStatement("insert into user(uname, pword) values(?, ?)");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getPassword());
 			x = ps.executeUpdate();
@@ -56,10 +56,11 @@ public class UserDAO {
 			ResultSet rs = con.createStatement().executeQuery("select * from user");
 			while(rs.next()) {
 				users += "<tr>" +
-					"<td>" + rs.getString(1) + "</td>" +
-					"<td>" + rs.getString(2) + "</td>" +
+					"<td class=\"name\">" + rs.getString(2) + "</td>" +
+					"<td class=\"pwd\">" + rs.getString(3) + "</td>" +
 					"<td>" +
-						"<img src=\"images/edit.png\" />" +
+						"<img src=\"images/edit.png\" class=\"editButton\" />" +
+						"<img id =\"" + rs.getInt(1) + "\" style=\"display:none\" src=\"images/save.png\" class=\"saveButton\" />" +
 					"</td>" +
 					"<td>" +
 						"<a href=\"delete.jsp?id=" + rs.getString(1) + "\" ><img src=\"images/delete.png\" />" +
@@ -71,6 +72,20 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return users;
+	}
+	
+	public void updateUser(int id, String username, String pwd) {		
+		
+		try{
+			con.createStatement().executeUpdate("update user " + 
+												"set uname=\"" + username + "\" ," +
+												" pword=\"" + pwd +
+												"\" where userid= " + id);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 }
